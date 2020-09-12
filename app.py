@@ -16,21 +16,11 @@ def mine():
 
     proof = blockchain.proof_of_work(last_proof)
 
- 
-
-    # rewarding the miner for his contribution. 0 specifies new coin has been mined
-
     blockchain.new_transaction(sender="0", recipient = node_identifier, amount = 1)
-
- 
-
-   # now create the new block and add it to the chain
 
     previous_hash = blockchain.hash(last_block)
 
     block = blockchain.new_block(proof, previous_hash)
-
- 
 
     response = {
 
