@@ -1,6 +1,6 @@
 import json
 import hashlib
-import time
+import datetime
 
 
 class BlockChain():
@@ -12,7 +12,7 @@ class BlockChain():
     def new_block(self, proof, previous_hash=None):
         block = {
             "index": len(self.chain) + 1,
-            "timestamp": time(),
+            "timestamp": datetime.datetime.now(),
             "proof": proof,
             "previous_hash":previous_hash
         }
@@ -52,7 +52,7 @@ class BlockChain():
 
     def valid_proof(self, last_proof, proof):
         guess = "{last_proof}{proof}"
-        guess_hash = hashlib.sha256(guess).hexigest()
+        guess_hash = hashlib.sha256(guess).hexdigest()
 
         return guess_hash[:4] == "0000"
 
